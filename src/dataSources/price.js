@@ -1,8 +1,9 @@
 import DataLoader from 'dataloader';
 
 export class PriceDataSource {
-  constructor(knexConnection) {
+  constructor(knexConnection, cache) {
     this.knexConnection = knexConnection;
+    this.cache = cache;
   }
 
   batchGetPriceByProductId = new DataLoader(async (productIds) => {
@@ -14,7 +15,15 @@ export class PriceDataSource {
   });
 
   async getPriceByProductId(productId) {
-    return this.batchGetPriceByProductId.load(productId);
+    const price = await this.cache.get(`getPriceByProductId-${productId}-v2`);
+    if (price) {
+      return price;
+    }
+    const priceDataloader = await this.batchGetPriceByProductId.load(productId);
+
+    await this.cache.set(`getPriceByProductId-${productId}-v2`, priceDataloader, { ttl: 10 });
+
+    return priceDataloader;
   }
 
   async addPrice(price) {

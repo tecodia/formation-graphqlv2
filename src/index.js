@@ -28,7 +28,7 @@ export default (async function () {
     listen: { port: 4000 },
     context: async () => {
       const product = new ProductDataSource(knexConnection);
-      const price = new PriceDataSource(knexConnection);
+      const price = new PriceDataSource(knexConnection, cache);
       const comment = new CommentDataSource(knexConnection);
       const author = new AuthorDataSource(knexConnection, cache);
       return {
