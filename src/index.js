@@ -1,6 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import Keyv from 'keyv';
+import { GraphQLError } from 'graphql';
 import { typeDefs } from './typedefs';
 import { resolvers } from './resolvers';
 import { ProductDataSource } from './dataSources/product';
@@ -26,7 +27,18 @@ const server = new ApolloServer({
 export default (async function () {
   const { url } = await startStandaloneServer(server, {
     listen: { port: 4000 },
-    context: async () => {
+    context: async ({ req }) => {
+      const apiKey = req.headers.authorization || '';
+
+      if (!apiKey || apiKey !== '123456') {
+        throw new GraphQLError('User is not authenticated', {
+          extensions: {
+            code: 'UNAUTHENTICATED',
+            http: { status: 401 },
+          },
+        });
+      }
+
       const product = new ProductDataSource(knexConnection);
       const price = new PriceDataSource(knexConnection, cache);
       const comment = new CommentDataSource(knexConnection);
