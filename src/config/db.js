@@ -1,4 +1,5 @@
 import knex from 'knex';
+import knexLogger from '../plugins/knex-logger';
 
 const knexConnection = knex({
   client: 'postgresql',
@@ -15,4 +16,4 @@ const knexConnection = knex({
   },
 });
 
-export default knexConnection;
+export default knexLogger(knexConnection);

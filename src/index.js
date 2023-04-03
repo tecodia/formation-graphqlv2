@@ -7,11 +7,13 @@ import knexConnection from './config/db';
 import { PriceDataSource } from './dataSources/price';
 import { CommentDataSource } from './dataSources/comment';
 import { AuthorDataSource } from './dataSources/author';
+import sqlPlugin from './plugins/sqlPlugin';
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
 const server = new ApolloServer({
   typeDefs: typeDefs(),
   resolvers,
+  plugins: [sqlPlugin],
 });
 
 export default (async function () {
