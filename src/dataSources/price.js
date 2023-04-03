@@ -21,10 +21,9 @@ export class PriceDataSource {
     const [id] = await this.knexConnection('price')
       .insert({
         amount: price.amount,
-        product_id: price.productId.id,
+        product_id: price.productId[0].id,
       })
       .returning('id');
-
     return {
       ...price,
       id,
