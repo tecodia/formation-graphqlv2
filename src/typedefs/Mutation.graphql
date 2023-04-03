@@ -1,3 +1,4 @@
 type Mutation {
   addComment(comment: CommentInput!): AddCommentResponse!
+  addProduct(product: ProductInput!): AddProductResponse!
 }

@@ -19,3 +19,14 @@ type PageInfo {
   hasNextPage: Boolean!
   endCursor: String
 }
+
+input ProductInput {
+  title: String!
+  price: PriceInput!
+}
+
+input PriceInput {
+  amount: Int!
+}
+
+union AddProductResponse = Product | Error

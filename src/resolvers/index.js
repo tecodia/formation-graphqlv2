@@ -4,6 +4,7 @@ import { price } from './product/price';
 import { comments } from './product/comments';
 import { product } from './query/product';
 import { addComment } from './mutation/addComment';
+import { addProduct } from './mutation/addProduct';
 
 export const resolvers = {
   Query: {
@@ -12,6 +13,7 @@ export const resolvers = {
   },
   Mutation: {
     addComment,
+    addProduct,
   },
   Comment: {
     author,

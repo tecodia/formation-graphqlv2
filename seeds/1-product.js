@@ -10,7 +10,7 @@ exports.seed = async function (knex) {
   await knex('price').del();
   await knex('product').del();
 
-  for (let i = 1; i <= 500; i++) {
+  for (let i = 1; i <= 3; i++) {
     await knex('product').insert([{ id: i, title: `product_${i}` }]);
   }
 };

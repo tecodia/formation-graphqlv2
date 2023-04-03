@@ -16,4 +16,18 @@ export class PriceDataSource {
   async getPriceByProductId(productId) {
     return this.batchGetPriceByProductId.load(productId);
   }
+
+  async addPrice(price) {
+    const [id] = await this.knexConnection('price')
+      .insert({
+        amount: price.amount,
+        product_id: price.productId.id,
+      })
+      .returning('id');
+
+    return {
+      ...price,
+      id,
+    };
+  }
 }
