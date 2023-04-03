@@ -1,0 +1,6 @@
+type Product {
+  id: ID!
+  title: String!
+  price: Price!
+  comments: [Comment]!
+}

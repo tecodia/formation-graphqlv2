@@ -1,7 +1,7 @@
-import { books } from './query/books';
+import { products } from './query/products';
 
 export const resolvers = {
   Query: {
-    books,
+    products,
   },
 };

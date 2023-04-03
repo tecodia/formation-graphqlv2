@@ -1,0 +1,4 @@
+type Price {
+  id: ID!
+  amount: Float!
+}

@@ -1,3 +1,4 @@
 type Query {
-  books: [Book]
+  products: [Product!]!
+  product(id: ID!): Product!
 }
