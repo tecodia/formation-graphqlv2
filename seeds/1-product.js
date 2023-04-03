@@ -4,8 +4,9 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex('author').del();
   await knex('comment').del();
+  await knex('author').del();
+
   await knex('price').del();
   await knex('product').del();
 
