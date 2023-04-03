@@ -1,8 +1,9 @@
 import DataLoader from 'dataloader';
 
 export class AuthorDataSource {
-  constructor(knexConnection) {
+  constructor(knexConnection, cache) {
     this.knexConnection = knexConnection;
+    this.cache = cache;
   }
 
   batchGetAuthorById = new DataLoader(async (authorIds) => {
@@ -12,6 +13,14 @@ export class AuthorDataSource {
   });
 
   async getAuthorById(authorId) {
-    return this.batchGetAuthorById.load(authorId);
+    const author = await this.cache.get(`getAuthorById-${authorId}-v2`);
+    if (author) {
+      return author;
+    }
+    const authorDataloader = await this.batchGetAuthorById.load(authorId);
+
+    await this.cache.set(`getAuthorById-${authorId}-v2`, authorDataloader, { ttl: 10 });
+
+    return authorDataloader;
   }
 }
