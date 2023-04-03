@@ -4,3 +4,18 @@ type Product {
   price: Price!
   comments(reviewMoreThan: Int): [Comment]!
 }
+
+type ProductConnection {
+  edges: [ProductEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProductEdge {
+  cursor: String!
+  node: Product!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: String
+}

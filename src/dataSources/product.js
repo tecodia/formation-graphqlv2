@@ -3,8 +3,8 @@ export class ProductDataSource {
     this.knexConnection = knexConnection;
   }
 
-  async getProducts() {
-    return this.knexConnection('product').select();
+  async getProducts(first, after) {
+    return this.knexConnection('product').select().limit(first).offset(after);
   }
 
   async getProductById(productId) {

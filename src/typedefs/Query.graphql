@@ -1,4 +1,4 @@
 type Query {
-  products: [Product!]!
+  products(first: Int!, after: String): ProductConnection!
   product(id: ID!): Product!
 }
