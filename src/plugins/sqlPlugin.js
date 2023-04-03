@@ -12,6 +12,7 @@ export default {
 
         // eslint-disable-next-line no-param-reassign
         requestContext.response.body.singleResult.extensions = {
+          ...requestContext.response.body.singleResult.extensions,
           sqlExtension,
         };
 
