@@ -4,3 +4,16 @@ type Comment {
   review: Int
   author: Author!
 }
+
+input CommentInput {
+  comment: String!
+  review: Int
+  productId: ID!
+  authorId: ID!
+}
+
+union AddCommentResponse = Comment | Error
+
+type Error {
+  message: String!
+}

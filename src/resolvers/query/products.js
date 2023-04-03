@@ -8,7 +8,6 @@ export const products = async (_, { first, after }, { dataSources }) => {
     })),
     pageInfo: {
       hasNextPage: productspg.length > first,
-      endCursor: productspg.slice(0, first)[first - 1].id,
     },
   };
 };

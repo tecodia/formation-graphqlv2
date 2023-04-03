@@ -16,4 +16,20 @@ export class CommentDataSource {
   async getCommentsByProductId(productId) {
     return this.batchGetCommentsByProductId.load(productId);
   }
+
+  async addComment(comment) {
+    const [id] = await this.knexConnection('comment')
+      .insert({
+        author_id: comment.authorId,
+        product_id: comment.productId,
+        review: comment.review,
+        comment: comment.comment,
+      })
+      .returning('id');
+
+    return {
+      ...comment,
+      id,
+    };
+  }
 }
