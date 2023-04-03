@@ -4,5 +4,5 @@ export const price = async (parent, args, context, info) => {
   if (!priceForProduct) {
     return { id: '0', amount: 0 };
   }
-  return priceForProduct[0];
+  return priceForProduct;
 };
