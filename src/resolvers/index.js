@@ -6,6 +6,7 @@ import { product } from './query/product';
 import { addComment } from './mutation/addComment';
 import { addProduct } from './mutation/addProduct';
 import { subscribe } from './subscription/productCreated';
+import { subscribe as subscribeCreatedComment } from './subscription/commentCreated';
 
 export const resolvers = {
   Query: {
@@ -26,6 +27,9 @@ export const resolvers = {
   Subscription: {
     productCreated: {
       subscribe,
+    },
+    commentCreated: {
+      subscribe: subscribeCreatedComment,
     },
   },
 };

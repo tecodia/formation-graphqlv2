@@ -1,3 +1,5 @@
 type Subscription {
   productCreated: Product
+  commentCreated: Comment
+  authorCreated: Author
 }
