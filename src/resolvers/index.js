@@ -7,11 +7,15 @@ import { addComment } from './mutation/addComment';
 import { addProduct } from './mutation/addProduct';
 import { subscribe } from './subscription/productCreated';
 import { subscribe as subscribeCreatedComment } from './subscription/commentCreated';
+import { fruits } from './query/fruits';
+import { fruitV2 } from './query/fruitv2';
 
 export const resolvers = {
   Query: {
     products,
     product,
+    fruitsv2: fruits,
+    fruitv2: fruitV2,
   },
   Mutation: {
     addComment,

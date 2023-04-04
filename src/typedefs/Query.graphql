@@ -1,6 +1,6 @@
 type Query {
   products(first: Int!, after: String): ProductConnection!
   product(id: ID!): Product!
-
-  comments(productId: ID!: first: Int!, after: String): CommentConnection!
+  fruitsv2(first: Int!, after: String): FruitConnection!
+  fruitv2(id: ID!): FruitV2!
 }

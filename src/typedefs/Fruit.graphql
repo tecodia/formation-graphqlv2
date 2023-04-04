@@ -1,0 +1,14 @@
+type FruitConnection {
+  edges: [FruitEdge]
+  pageInfo: PageInfo!
+}
+
+type FruitEdge {
+  cursor: String!
+  node: FruitV2
+}
+
+type FruitV2 {
+  id: ID!
+  name: String!
+}
