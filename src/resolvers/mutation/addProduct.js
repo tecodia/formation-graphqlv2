@@ -1,4 +1,4 @@
-export const addProduct = async (_, { product }, { dataSources }) => {
+export const addProduct = async (_, { product }, { dataSources, pubsub }) => {
   try {
     const newProduct = await dataSources.product.addProduct({
       ...product,
@@ -7,6 +7,14 @@ export const addProduct = async (_, { product }, { dataSources }) => {
     await dataSources.price.addPrice({
       amount: product.price.amount,
       productId: newProduct.id,
+    });
+
+    pubsub.publish('PRODUCT_CREATED', {
+      productCreated: {
+        ...newProduct,
+        id: newProduct.id[0].id,
+        __typename: 'Product',
+      },
     });
 
     return {

@@ -5,6 +5,7 @@ import { comments } from './product/comments';
 import { product } from './query/product';
 import { addComment } from './mutation/addComment';
 import { addProduct } from './mutation/addProduct';
+import { subscribe } from './subscription/productCreated';
 
 export const resolvers = {
   Query: {
@@ -21,5 +22,10 @@ export const resolvers = {
   Product: {
     price,
     comments,
+  },
+  Subscription: {
+    productCreated: {
+      subscribe,
+    },
   },
 };
