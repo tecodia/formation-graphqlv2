@@ -25,6 +25,8 @@ import sqlPlugin from './plugins/sqlPlugin';
 import { MyKeyvAdapter } from './cache/MyKeyvAdapter';
 import redisPlugin from './plugins/redis-plugin';
 import { FruitAPI } from './dataSources/fruit';
+import { fruitTypeDefs } from './typedefs/fruit';
+import { fruitResolvers } from './resolvers/fruitresolver';
 
 export default (async function () {
   const pubsub = new PubSub();
@@ -46,6 +48,8 @@ export default (async function () {
 
   const gatewaySchema = stitchSchemas({
     subschemas: [schema, subschema],
+    typeDefs: fruitTypeDefs,
+    resolvers: fruitResolvers,
   });
 
   // Create an Express app and HTTP server; we will attach both the WebSocket
